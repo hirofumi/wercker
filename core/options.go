@@ -947,3 +947,22 @@ func NewWerckerDockerOptions(c util.Settings, e *util.Environment) (*WerckerDock
 		WerckerContainerRegistry: wcr,
 	}, nil
 }
+
+type WerckerStepOptions struct {
+	*GlobalOptions
+	Owner string
+}
+
+func NewWerckerStepOptions(c util.Settings, e *util.Environment) (*WerckerStepOptions, error) {
+	globalOpts, err := NewGlobalOptions(c, e)
+	if err != nil {
+		return nil, err
+	}
+
+	owner, _ := c.String("owner")
+
+	return &WerckerStepOptions{
+		GlobalOptions: globalOpts,
+		Owner:         owner,
+	}, nil
+}
